@@ -1,0 +1,235 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --light: #d8dbe0;
+    --dark: #28292c;
+    --pressed-highlight: #b35f1e;
+    --pressed-shadow: #9c5118;
+}
+
+body {
+    background-color: #121212;
+    color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 2rem 5rem;
+}
+
+/* Light mode */
+body.light-mode {
+    background-color: #eeeeee;
+    color: #000;
+}
+
+body.light-mode .key {
+    background-color: #eeeeee;
+    border: 7px outset #d5d8da;
+}
+
+body.light-mode .slider {
+    box-shadow: 0 0 3px 0 #333639; 
+    
+}
+
+/* Toggle switch */   
+.fancy {
+    height: 40px;
+    align-self: start;
+}
+
+.toggle-switch {
+    position: relative;
+    height: 100%;
+    width: 80px;
+}
+  
+input {
+    display: none;
+}
+  
+.slider {
+    background-color: var(--dark);    
+    box-shadow: 0 0 3px 0 #eeeeee;
+    border-radius: 30px;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    transition: 0.3s;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+  
+input:checked + .slider {
+    background-color: var(--light);
+}
+
+/* slider shape moon */
+.slider::before {
+    background-color: var(--dark);
+    border-radius: 50%;
+    box-shadow: inset 8px -3px 0px 0px var(--light);
+    content: "";
+    height: 25px;
+    width: 25px;
+    transition: 0.3s;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
+/* slider shape sun */
+input:checked + .slider::before {
+    background-color: var(--dark);
+    box-shadow: none;
+    transform: translateX(40px);
+}
+
+/* Intro */
+#instructions {
+    margin-bottom: 2rem;
+}
+
+.inst-div {
+    margin-top: 10px;
+}
+
+.orange {
+    background-color: var(--pressed-highlight);
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    display: inline-block;
+    padding: 7px;
+}
+
+#select-layout {
+    border-radius: 10px;
+    font-size: inherit;
+    padding: 5px 7px;
+    text-align: center;
+}
+
+/* Full Keyboard  */
+#keyboard {
+    margin: 3rem auto;  
+    width: 100%;
+}
+
+#main-board {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(90, minmax(18px, 25px)); 
+    grid-template-rows: repeat(6, minmax(72px, 75px));
+    width: 100%; 
+}
+
+.key {
+    background-color: #333639;
+    border: 7px outset #25282a;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    grid-column: span 4; 
+    grid-row: span 1;
+    line-height: 1.2rem;
+    margin: 3px 2px;
+    padding-top: 10px;    
+}
+
+/* keycap width/height */
+.h2 {
+    grid-row: span 2;
+}
+
+.u125 {
+    grid-column: span 5;
+}
+
+.u15 {
+    grid-column: span 6;
+}
+
+.u175 {
+    grid-column: span 7;
+}
+
+.u2 {
+    grid-column: span 8;
+}
+
+.u225 {
+    grid-column: span 9;
+}
+
+.u275 {
+    grid-column: span 11;
+}
+
+.u625 {
+    grid-column: span 25;
+}
+
+/* space between keys */
+.space1 {
+    grid-column: span 4;
+} 
+
+.space2 {
+    grid-column: span 2;
+}
+
+.space3 {
+    grid-column: span 1;
+}
+
+#main-board > .spborder {
+    background-color: transparent;
+    border: none;
+}
+
+
+/* Show key presses */
+.log {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#keypress {
+    background-color: #b01d90;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    margin-left: 5px;
+    padding: 10px;    
+}
+
+
+/* keydown behavior */
+.pressed {
+    box-shadow: 0 3px 4px 0 #dbedf3;
+    opacity: 0.5;
+}
+
+#main-board > .highlight {
+    background-color: var(--pressed-highlight); 
+    border: 7px outset var(--pressed-shadow); /*#ad5919*/
+    color: #ffffff;
+}
+
+
+/* Media queries */
+@media (min-width: 1028px) {
+    .keyboard {
+        padding: 0 10%;
+    }
+}
