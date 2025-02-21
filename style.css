@@ -1,15 +1,41 @@
+/* General Reset and Box Sizing */
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
+/* Root Variables */
 :root {
     --light: #d8dbe0;
     --dark: #28292c;
     --pressed-highlight: #b35f1e;
     --pressed-shadow: #9c5118;
+    --def-fs: 62.5%;
+    --ff: 'Segoe UI', sans-serif;
+    --color-primary: #343a40;
+    --color-primary-darker: #333;
+    --color-primary-lighter: #555;
+    --key-border-radius: 0.6rem;
+    --box-shadow-keycaps-value: inset 0 -0.2rem 0 0.3rem;
+    --box-shadow-keycaps-hover-value: inset 0 -0.1rem 0 0.2rem;
+    --color-keyboard: #3c3e4a;
+    --color-keyboard-border: #303642;
+    --color-keycaps-legends: #555;
+    --color-keycaps-bg: #f8f9fa;
+    --color-keycaps-shadow: #adb5bd;
+    --color-keycaps-legends-accent: #555;
+    --color-keycaps-bg-accent: #e2e3e6;
+    --color-keycaps-shadow-accent: #97a0a8;
+    --color-keycaps-legends-pressed: #2f3674;
+    --color-keycaps-bg-pressed: #a4a9b0;
+    --color-keycaps-shadow-pressed: #7f8489;
+    --color-bg: linear-gradient(45deg, #e9ecef, #ced4da, #adb5bd, #eaebf1, #c1c3d5);
+    --color-bg-title: linear-gradient(45deg, #14181c, #506070, #2e3235, #506070, #2e3235, #506070, #14181c);
+    --color-bg-toggle: linear-gradient(45deg, #4dabf7, #228be6, #1c70c0, #3c56da);
 }
 
+/* Body Styling */
 body {
     background-color: #121212;
     color: #eeeeee;
@@ -17,13 +43,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--ff);
     font-size: 1.5rem;
     text-align: center;
     padding: 2rem 5rem;
+    line-height: 1;
+    font-weight: 400;
 }
 
-/* Light mode */
+/* Light Mode */
 body.light-mode {
     background-color: #eeeeee;
     color: #000;
@@ -35,11 +63,10 @@ body.light-mode .key {
 }
 
 body.light-mode .slider {
-    box-shadow: 0 0 3px 0 #333639; 
-    
+    box-shadow: 0 0 3px 0 #333639;
 }
 
-/* Toggle switch */   
+/* Toggle Switch */
 .fancy {
     height: 40px;
     align-self: start;
@@ -50,13 +77,13 @@ body.light-mode .slider {
     height: 100%;
     width: 80px;
 }
-  
+
 input {
     display: none;
 }
-  
+
 .slider {
-    background-color: var(--dark);    
+    background-color: var(--dark);
     box-shadow: 0 0 3px 0 #eeeeee;
     border-radius: 30px;
     cursor: pointer;
@@ -67,12 +94,12 @@ input {
     left: 0;
     top: 0;
 }
-  
+
 input:checked + .slider {
     background-color: var(--light);
 }
 
-/* slider shape moon */
+/* Slider Shape Moon */
 .slider::before {
     background-color: var(--dark);
     border-radius: 50%;
@@ -86,7 +113,7 @@ input:checked + .slider {
     top: 8px;
 }
 
-/* slider shape sun */
+/* Slider Shape Sun */
 input:checked + .slider::before {
     background-color: var(--dark);
     box-shadow: none;
@@ -118,18 +145,18 @@ input:checked + .slider::before {
     text-align: center;
 }
 
-/* Full Keyboard  */
+/* Full Keyboard */
 #keyboard {
-    margin: 3rem auto;  
+    margin: 3rem auto;
     width: 100%;
 }
 
 #main-board {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(90, minmax(18px, 25px)); 
+    grid-template-columns: repeat(90, minmax(18px, 25px));
     grid-template-rows: repeat(6, minmax(72px, 75px));
-    width: 100%; 
+    width: 100%;
 }
 
 .key {
@@ -138,14 +165,14 @@ input:checked + .slider::before {
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: 400;
-    grid-column: span 4; 
+    grid-column: span 4;
     grid-row: span 1;
     line-height: 1.2rem;
     margin: 3px 2px;
-    padding-top: 10px;    
+    padding-top: 10px;
 }
 
-/* keycap width/height */
+/* Keycap Width/Height */
 .h2 {
     grid-row: span 2;
 }
@@ -178,10 +205,10 @@ input:checked + .slider::before {
     grid-column: span 25;
 }
 
-/* space between keys */
+/* Space Between Keys */
 .space1 {
     grid-column: span 4;
-} 
+}
 
 .space2 {
     grid-column: span 2;
@@ -196,8 +223,7 @@ input:checked + .slider::before {
     border: none;
 }
 
-
-/* Show key presses */
+/* Show Key Presses */
 .log {
     display: flex;
     align-items: center;
@@ -210,26 +236,107 @@ input:checked + .slider::before {
     border-radius: 5px;
     color: #ffffff;
     margin-left: 5px;
-    padding: 10px;    
+    padding: 10px;
 }
 
-
-/* keydown behavior */
+/* Keydown Behavior */
 .pressed {
     box-shadow: 0 3px 4px 0 #dbedf3;
     opacity: 0.5;
 }
 
 #main-board > .highlight {
-    background-color: var(--pressed-highlight); 
-    border: 7px outset var(--pressed-shadow); /*#ad5919*/
+    background-color: var(--pressed-highlight);
+    border: 7px outset var(--pressed-shadow);
     color: #ffffff;
 }
 
-
-/* Media queries */
+/* Media Queries */
 @media (min-width: 1028px) {
     .keyboard {
         padding: 0 10%;
     }
+}
+
+@media (max-width: 87em) {
+    html {
+        font-size: 56.25%;
+    }
+}
+
+@media (max-width: 79em) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@media (max-width: 66em) {
+    html {
+        font-size: 43.75%;
+    }
+}
+
+@media (max-width: 58em) {
+    html {
+        font-size: 37.5%;
+    }
+}
+
+@media (max-width: 49em) {
+    html {
+        font-size: 31.25%;
+    }
+}
+
+@media (max-width: 40em) {
+    html {
+        font-size: 25%;
+    }
+}
+
+@media (max-width: 32em) {
+    html {
+        font-size: 18.75%;
+    }
+}
+
+@media (max-width: 24em) {
+    html {
+        font-size: 16%;
+    }
+}
+
+/* Typography System */
+.heading-primary {
+    font-weight: 700;
+    color: var(--color-primary-darker);
+    letter-spacing: -0.5px;
+    font-size: 5.2rem;
+    line-height: 1.05;
+    margin-bottom: 3.2rem;
+}
+
+.paragraph {
+    font-size: 2rem;
+    color: var(--color-primary);
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
+}
+
+.link:link,
+.link:visited {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding-top: 10px;
+}
+
+.link:hover,
+.link:active {
+    color: var(--color-primary-lighter);
+}
+
+/* Helper/Settings Classes */
+.center-text {
+    text-align: center;
 }
